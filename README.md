@@ -1,2 +1,2 @@
-# Improved tree dissection framework
+# Hierarchical tree dissection framework
 Framework to automate the dissection of hierarchical trees into epidemiologically-meaningful partitions.
