@@ -16,6 +16,10 @@ bash Tree_dissect.sh
 ```
 >If all is well, then the code should run to completion (it will take a while depending on the number of threads you choose). The final cluster memberships will be printed in the "clusters_detected" directory.
 
+
+# Important note
+The way the current code differentiates between the two species of Cyclospora is due to the fact that Cyclospora ashfordi is less common in our population than C. cayetanensis. So after the tree is cut into two, the largest of the two populations is assumed to be C. cayetanensis and the smaller is going to be C. ashfordi.
+
 # Reference
 If you find this code helpful, please cite the following study: **yet to be published**.
 
