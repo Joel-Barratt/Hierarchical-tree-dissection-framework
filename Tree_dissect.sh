@@ -67,7 +67,7 @@ cd $LOC
 rm -rf TMP_REP
 cd $repo_location/$REPO
 
-echo "TREE DISSECTION COMPLETE!"
+echo "TREE DISSECTION COMPLETE"
 
 
 
