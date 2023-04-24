@@ -25,7 +25,7 @@ temporary_directory <- getwd()
 
 
 
-#### First you need to import the most recent ensemble matrix as a variable in R called "matrix" in R
+#### Import the matrix as a variable called "matrix"
 
 matrix_location <- readLines("MATRIX_LOCATION")
 
@@ -38,26 +38,16 @@ matrix <- as.matrix(read.table(myMatrix, sep = ",", row.names=1, header=TRUE))
 
 setwd(temporary_directory)
 
-##### Now you need to calculate the number of genetic clusters using the "gold standard" list. Use this to calculate the number of genetic clusters. "number_of_genetic_clusters" needs to be the name of this variable.
-
-
 ###set range of cluster numbers to test
 min_cluster_number = as.numeric(readLines("CLUSTER_MIN"))
 max_cluster_number = as.numeric(readLines("CLUSTER_MAX"))
 
 
-### below here is where things change completely to the original:
-
 
 source("../INTRASPECIES_cutoffs_V1.R")
-
-
 source("../CUTOFF_cayetanensis.R") #0.786
 source("../CUTOFF_ashfordi.R") #0.406 or 0.407
 
-
-#CAYETANENSIS_golden_cluster_distance
-#ASHFORDI_golden_cluster_distance
 
 #species_clusters
 number_1 <- filter(species_clusters, value == 1)
@@ -84,15 +74,6 @@ ASHFORDI_clusters <- as.data.frame(melt(factor(cutree(Ensemble_x, h= ASHFORDI_go
 CAYETANENSIS_clusters <- as.data.frame(melt(factor(cutree(Ensemble_x, h=CAYETANENSIS_golden_cluster_distance))))
 
 
-
-
-#ASHFORDI_clusters <- as.data.frame(melt(factor(cutree(Ensemble_x, k= 84))))
-#CAYETANENSIS_clusters <- as.data.frame(melt(factor(cutree(Ensemble_x, k=36))))
-
-
-
-
-#p <- ggtree(Ensemble_x, size = 1.4, layout = "circular")
 
 CAYETANENSIS_clusters$Seq_ID <- rownames(CAYETANENSIS_clusters)
 ASHFORDI_clusters$Seq_ID <- rownames(ASHFORDI_clusters)
@@ -130,15 +111,6 @@ cay_ash_clusters <- rbind(sorted_CAYETANENSIS_clusters, sorted_ASHFORDI_clusters
 
 cay_ash_clusters$value <- NULL
 
-#length(unique(cay_ash_clusters$Species))
-
-
-
-
-source("../TREE.R")
-
-x # will print the tree
-
 
 
 
@@ -151,8 +123,6 @@ for(t in 1:length(CLUS_RENAME)){
 	CLUS_RENAME[[t]]$Cluster <- t
 	final_clusters <- rbind(CLUS_RENAME[[t]], final_clusters)	
 	}	
-
-
 
 for(u in 1:length(rownames(final_clusters))){
 	
@@ -167,9 +137,6 @@ for(u in 1:length(rownames(final_clusters))){
 	}
 }
 
-
-
-#final_clusters$Species <- NULL
 sorted_final_clusters <- final_clusters[order(final_clusters$Cluster),]
 
 setwd("..")
