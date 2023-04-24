@@ -143,7 +143,7 @@ setwd("..")
 setwd("../clusters_detected")
 write.table(sorted_final_clusters, "final_clusters_for_paper_PYTHON_MATRIX.txt", sep="\t", quote=FALSE, row.names=FALSE)
 
-#write.table(sorted_final_clusters, "final_clusters_for_paper_PYTHON_MATRIX_repeat_OLD_METHOD_GOOD.txt", sep="\t", quote=FALSE, row.names=FALSE)
+#write.table(sorted_final_clusters, "FINAL_CLUSTER_MEMBERSHIPS.txt", sep="\t", quote=FALSE, row.names=FALSE)
 
 
 
