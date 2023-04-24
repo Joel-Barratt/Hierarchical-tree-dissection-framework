@@ -2,11 +2,10 @@
 print("Now computing the cutoff distance for Cyclospora ashfordi")
 
 ########################################################################################
-# ASHFORDI - big loop below BIG LOOP MULTI-THREADED:
+# ASHFORDI - big loop below - MULTI-THREADED:
 ########################################################################################
 
 ASHFORDI_get_cutoffs_under_first_peak = mclapply(1:bootstraps, function (z) {
-#ASHFORDI_get_cutoffs_under_first_peak = mclapply(1:10, function (z) {	
 
 list_of_clusters <- list()
 
@@ -49,28 +48,6 @@ unbiased_list_of_specimens <- rbind(unbiased_list_of_specimens, random_ones)
 	
 }
 
-#now lets build a distance matrix from this set of unbiased specimens and decide upon a cutoff
-#new_unbiased_matrix <- matrix(, nrow = length(unbiased_list_of_specimens$Seq_ID), ncol = length(unbiased_list_of_specimens$Seq_ID))
-#rownames(new_unbiased_matrix) <- c(unbiased_list_of_specimens$Seq_ID)
-#colnames(new_unbiased_matrix) <- c(unbiased_list_of_specimens$Seq_ID)
-
-#for(n in rownames(new_unbiased_matrix)){
-	
-#	for(o in rownames(new_unbiased_matrix)){
-		
-#	new_unbiased_matrix[n, o] <- matrix[n, o]
-		
-#	}
-	
-#}
-
-
-#d2 <- density(new_unbiased_matrix)
-#plot(d2, lwd = 3.5, col = "black")
-
-
-#just_colnames <-   cbind(colnames(new_unbiased_matrix), 1:length(colnames(new_unbiased_matrix)) )
-#colnames(just_colnames) <- c("Seq_ID", "Number")
 
 #species_clusters is a dataframe generated outside the loop because it takes a while to generate and we want the loop to run quickly.
 species_clusters_ASHFORDI <-  merge(unbiased_list_of_specimens, species_clusters_ASHFORDI, by.x = "Seq_ID", all.x=TRUE) 
@@ -100,10 +77,6 @@ if(length(species_1$value) < length(species_2$value)){
 
 
 #now find normalised samples from within the ASHFORDI_genotypes list:
-
-
-
-
 
 
 
@@ -195,36 +168,3 @@ ASHFORDI_golden_cluster_distance <- round(ASHFORDI_cutoff_average_matrix, digits
 print("Your distance cutoff for Cyclospora ashfordi is:")
 print(ASHFORDI_golden_cluster_distance)
 ########################################################################################
-
-
-
-
-foobar <- ASHFORDI_get_cutoffs_under_first_peak
-
-for (k in 1:length(ASHFORDI_get_cutoffs_under_first_peak)){
-	
-	foobar[[k]]$col <- NULL
-	foobar[[k]]$row <- NULL
-	foobar[[k]]$value <- as.numeric(foobar[[k]]$value)
-	foobar[[k]]$D <- NULL
-
-}
-
-ASHFORDI_average_cutoff_foobar <- (Reduce("+", foobar)/length(foobar))
-#ASHFORDI_cutoff_average_foobar_matrix <- ASHFORDI_average_cutoff_foobar$value[round((5/100)*length(ASHFORDI_average_cutoff_foobar$value))]
-#ASHFORDI_golden_cluster_foobar <- round(ASHFORDI_cutoff_average_foobar_matrix, digits = 3)
-
-
-ASH_dens <- density(ASHFORDI_average_cutoff_foobar$value)
-plot(ASH_dens, lwd = 4, col = "black")
-
-#ad.test(ASHFORDI_average_cutoff_foobar$value) 
-#qqnorm(ASHFORDI_average_cutoff_foobar$value, main='Normal')
-#qqline(ASHFORDI_average_cutoff_foobar$value)
-
-
-qqnorm(ASHFORDI_average_cutoff_foobar$value, main='Normal', lwd = 1.5, col = "black", cex=1, cex.axis=1.4, cex.lab=1.4)
-qqline(ASHFORDI_average_cutoff_foobar$value, lwd = 5, col = "gray60")
-
-
-
