@@ -2,11 +2,10 @@
 print("Now computing the cutoff distance for Cyclospora cayetanensis")
 
 ########################################################################################
-# CAYETANENSIS - big loop below BIG LOOP MULTI-THREADED:
+# CAYETANENSIS - big loop below - MULTI-THREADED:
 ########################################################################################
 
 CAYETANENSIS_get_cutoffs_under_first_peak = mclapply(1:bootstraps, function (z) {
-#CAYETANENSIS_get_cutoffs_under_first_peak = mclapply(1:10, function (z) {	
 
 list_of_clusters <- list()
 
@@ -50,36 +49,6 @@ unbiased_list_of_specimens <- rbind(unbiased_list_of_specimens, random_ones)
 }
 
 
-
-##### PART OF OLD CODE ############################################################
-
-#now lets build a distance matrix from this set of unbiased specimens and decide upon a cutoff
-#new_unbiased_matrix <- matrix(, nrow = length(unbiased_list_of_specimens$Seq_ID), ncol = length(unbiased_list_of_specimens$Seq_ID))
-#rownames(new_unbiased_matrix) <- c(unbiased_list_of_specimens$Seq_ID)
-#colnames(new_unbiased_matrix) <- c(unbiased_list_of_specimens$Seq_ID)
-
-#for(n in rownames(new_unbiased_matrix)){
-	
-#	for(o in rownames(new_unbiased_matrix)){
-		
-#	new_unbiased_matrix[n, o] <- matrix[n, o]
-		
-#	}
-	
-#}
-
-
-#listed <- dist2list(as.dist(new_unbiased_matrix))
-#listed_no_self <- filter(listed, col != row) #remove self to self
-
-
-#d2 <- density(listed_no_self$value)
-#plot(d2, lwd = 4, col = "black")
-################################################################################
-
-#just_colnames <-   cbind(colnames(new_unbiased_matrix), 1:length(colnames(new_unbiased_matrix)) )
-#colnames(just_colnames) <- c("Seq_ID", "Number")
-
 #species_clusters is a dataframe generated outside the loop because it takes a while to generate and we want the loop to run quickly.
 species_clusters_CAYETANENSIS <-  merge(unbiased_list_of_specimens, species_clusters_CAYETANENSIS, by.x = "Seq_ID", all.x=TRUE) 
 
@@ -105,14 +74,6 @@ if(length(species_1$value) > length(species_2$value)){
 	CAYETANENSIS_genotypes <- species_2
 	
 }
-
-
-#now find normalised samples from within the CAYETANENSIS_genotypes list:
-
-
-
-
-
 
 
 ## make a normalised patristic matrix
@@ -156,8 +117,6 @@ raw_CAYETANENSIS_list_norm_matrix <- dist2list(raw_CAYETANENSIS_normalized_matri
 raw_CAYETANENSIS_list_norm_matrix_no_self2self <- filter(raw_CAYETANENSIS_list_norm_matrix, col != row) #remove self to self
 
 
-#sorted_raw_CAYETANENSIS_list_norm_matrix_no_self2self <- as.data.frame(raw_CAYETANENSIS_list_norm_matrix_no_self2self[order(raw_CAYETANENSIS_list_norm_matrix_no_self2self$value),])
-
 
 #patristic_matrix
 patristic_CAYETANENSIS_normalized_matrix <- as.dist(patristic_CAYETANENSIS_normalized_matrix)
@@ -176,7 +135,6 @@ pat_plus_raw_CAYETANENSIS <- as.data.frame(pat_plus_raw_CAYETANENSIS)
 sorted_pat_plus_raw_CAYETANENSIS <- pat_plus_raw_CAYETANENSIS[order(as.numeric(pat_plus_raw_CAYETANENSIS$value)),]
 
 
-#length(sorted_pat_plus_raw_CAYETANENSIS$value)
 
 }, mc.cores= number_of_threads)
 
@@ -204,45 +162,4 @@ CAYETANENSIS_golden_cluster_distance <- round(CAYETANENSIS_cutoff_average_matrix
 print("Your distance cutoff for Cyclospora cayetanensis is:")
 print(CAYETANENSIS_golden_cluster_distance)
 ########################################################################################
-
-
-#loo <- as.data.frame(melt(factor(cutree(Ensemble_x, h=CAYETANENSIS_golden_cluster_distance))))
-#max(as.numeric(loo$value))
-
-##below is just to find out what the raw cutoff would have been.
-
-foo <- CAYETANENSIS_get_cutoffs_under_first_peak
-
-
-for(z in 1:length(foo)){
-	foo[[z]]$col <- NULL
-	foo[[z]]$row <- NULL
-	foo[[z]]$D <- NULL
-	#f00[[z]] <- as.numeric(CAYETANENSIS_keep_only_numbers[[z]]$D)
-	foo[[z]]$value <- as.numeric(foo[[z]]$value)
-}
-
-CAYETANENSIS_average_cutoff_under_first_peak_foo <- (Reduce("+", foo)/length(foo))
-
-#CAYETANENSIS_average_cutoff_under_first_peak_foo <- CAYETANENSIS_average_cutoff_under_first_peak_foo$value
-
-#CAYETANENSIS_cutoff_average_matrix_foo <- CAYETANENSIS_average_cutoff_under_first_peak_foo$value[round((5/100)*length(CAYETANENSIS_average_cutoff_under_first_peak_foo$value))]
-#CAYETANENSIS_golden_cluster_distance_foo <- round(CAYETANENSIS_cutoff_average_matrix_foo, digits = 3)
-
-CAY_dens <- density(CAYETANENSIS_average_cutoff_under_first_peak_foo $value)
-plot(CAY_dens, lwd = 4, col = "black")
-
-#ad.test(CAYETANENSIS_average_cutoff_under_first_peak_foo $value)
-
-#qqnorm(CAYETANENSIS_average_cutoff_under_first_peak_foo $value, main='Normal')
-#qqline(CAYETANENSIS_average_cutoff_under_first_peak_foo $value)
-
-qqnorm(CAYETANENSIS_average_cutoff_under_first_peak_foo $value, main='Normal', lwd = 1.5, col = "black", cex=1, cex.axis=1.4, cex.lab=1.4)
-qqline(CAYETANENSIS_average_cutoff_under_first_peak_foo $value, lwd = 5, col = "gray60")
-
-
-
-
-
-
 
