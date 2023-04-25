@@ -5,7 +5,7 @@
 
 ###################################################################################################################################
 # DO NOT modify the next 4 lines.                                                           #######################################
-REPO=/Hierarchical-tree-dissection-framework/                                               #######################################
+REPO=/Hierarchical-tree-dissection-framework-main/                                          #######################################
 CLUSTERING=$REPO/CLUSTERING                                                                 #######################################
 ## Number of Cyclospora species in population (DO NOT MODIFY THIS PART OF THE CODE).        #######################################
 number_of_species_in_USA=2.                                                                 #######################################
