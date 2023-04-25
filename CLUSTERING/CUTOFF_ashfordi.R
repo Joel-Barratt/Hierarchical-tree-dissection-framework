@@ -158,7 +158,6 @@ for(z in 1:length(ASHFORDI_keep_only_numbers)){
 	ASHFORDI_keep_only_numbers[[z]]$row <- NULL
 	ASHFORDI_keep_only_numbers[[z]]$value <- NULL
 	ASHFORDI_keep_only_numbers[[z]] <- as.numeric(ASHFORDI_keep_only_numbers[[z]]$D)
-	#ASHFORDI_keep_only_numbers[[z]] <- as.numeric(ASHFORDI_keep_only_numbers[[z]]$value)
 }
 
 ASHFORDI_average_cutoff_under_first_peak <- (Reduce("+", ASHFORDI_keep_only_numbers)/length(ASHFORDI_keep_only_numbers))
