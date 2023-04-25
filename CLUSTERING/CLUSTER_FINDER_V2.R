@@ -16,8 +16,6 @@ library(utils)
 library(colorspace)
 library(DescTools)
 
-#UP November 19, 2020
-
 date_today <- Sys.Date()
 
 temporary_directory <- getwd()
