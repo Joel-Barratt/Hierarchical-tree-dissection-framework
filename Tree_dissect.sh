@@ -13,9 +13,9 @@ number_of_species_in_USA=2.                                                     
 
 
 
-###USER MUST MODIFY THE FOLLOWING LINES:
+###USER CAN MODIFY THE FOLLOWING LINES:
 
-# TELL ME THE DIRECTORY WHERE YOU PASTED AND UNZIPPED THE REPO FOLDER.
+# TELL ME THE DIRECTORY WHERE YOU PASTED AND UNZIPPED THE REPO FOLDER. Make sure you modify this line!!!
 repo_location=/Users/your_name/Documents/
 
 # What is the smallest number of partitions in each population that you expect to see?
