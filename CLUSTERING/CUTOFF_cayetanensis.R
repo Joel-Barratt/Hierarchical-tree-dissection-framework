@@ -152,7 +152,6 @@ for(z in 1:length(CAYETANENSIS_keep_only_numbers)){
 	CAYETANENSIS_keep_only_numbers[[z]]$row <- NULL
 	CAYETANENSIS_keep_only_numbers[[z]]$value <- NULL
 	CAYETANENSIS_keep_only_numbers[[z]] <- as.numeric(CAYETANENSIS_keep_only_numbers[[z]]$D)
-	#CAYETANENSIS_keep_only_numbers[[z]] <- as.numeric(CAYETANENSIS_keep_only_numbers[[z]]$value)
 }
 
 CAYETANENSIS_average_cutoff_under_first_peak <- (Reduce("+", CAYETANENSIS_keep_only_numbers)/length(CAYETANENSIS_keep_only_numbers))
