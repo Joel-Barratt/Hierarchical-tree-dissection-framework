@@ -18,6 +18,8 @@ bash Tree_dissect.sh
 ## Important note
 The way this code differentiates between the two species of Cyclospora is due to the fact that Cyclospora ashfordi is less common in our population than C. cayetanensis. So after the tree is cut into two, the largest of the two populations is going to be C. cayetanensis and the smaller is going to be C. ashfordi. We take this for granted as a simple way to automate the differentiation of these two types of Cyclospora, but if the proportions of each type within the population change in any way, then this part of the code will need to be edited. This step is controlled in lines 64 to 76 of the "CUTOFF_ashfordi.R" and "CUTOFF_cayetanensis.R" scripts.
 
+Regarding dependencies, just open the "CLUSTER_FINDER_V2.R" script and look at the list of libraries at the top of this script to determine which packages/libraries are required to run this code.
+
 # Reference
 If you find this code helpful, please cite the following study: **yet to be published**.
 
